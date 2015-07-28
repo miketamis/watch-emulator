@@ -155,18 +155,130 @@ The Android apps include:
     </ul>
 
 
+    <h2> Languages, Frameworks, IDE and Tools </h2>
 
-    <h2> Version Control </h2>
-    Git - because git is awesome, I have been using it for a while, most ide support it, easy branching, etc... </br>
-    Github - because its free, easy to use, has an issue tracker and I have an account. <a href="https://github.com/miketamis/Situps-app">Github project.</a>
+    <h3> Version Control </h3>
+    <p> I have decide to use git because I have been using it for a few years now and therefore I don't need to learn another version control.
+    one of things I love about git is how easy it is to branch to try out a new approach or develop a new idea.
+    on a large scale project I like to use the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow"> gitflow workflow </a>
+    but considering that this is a smaller project and I am the only developer I will use a more centralized workflow and it is always easy to
+    switch to gitflow if the project reaches a size where it would be of an advantage. </p>
 
-    <h2> Languages, Frameworks and IDE </h2>
+    <p> I have decide to use Github to host my code as it is free, and I have been using it for a while and know my way around. I did look at some
+    alternatives like https://bitbucket.org but didn't see any huge advantages over github to make the switch. </p>
+
+    <p> I will also use <a href="https://www.sourcetreeapp.com/"> SourceTree </a> and the the command line to manage my git,
+       I have used <a href="https://mac.github.com/"> Github for Mac </a> before but still like SourceTree better, I looked into other
+      git clients and found a nice comparison on <a href="http://www.slant.co/topics/465/~what-are-the-best-git-clients-for-mac-os-x">slant</a> and I think I will
+      stick to SourceTree.<p>
+
+    <a href="https://github.com/miketamis/Situps-app">Github project.</a>
+
+    <h3> HTML preprocessor </h3>
+    <p>I decided not to use any html preprocessor because I have been using HTML for a while now and have gotten the hang of it. Also
+    most IDEs including atom (the text editor I use) does some clever autocomplete making it pretty easy to use. </p>
+
+    <p>I did look at some HTML preprocessors: <a href="http://haml.info/"> HAML </a> and <a href="http://jade-lang.com/"> Jade </a>
+    these did remove having to repeat the end tag which would be nice but would not be worth the trouble of having a preprocessor, and having
+    to get used to writing in a new language. The other thing is that HAML and Jade used for templating which I would not be using in this client-side
+    only application.</p>
+
+    <p>I will be using markdown for my documentation and other notes as it is very easy to read and write in plain text and produces nice HTML.</p>
+
+    <h3> CSS preproccesor </h3>
+    <p> I have decide to use a CSS preprocessor because CSS on it own can become a monster and I have worked on project with CSS files over 3,000 lines, which
+    becomes un manageable. </p>
+
+    I found a nice list of the 6 main CSS preprocessors on <a href="http://www.sitepoint.com/6-current-options-css-preprocessors/"> sitepoint </a> this gave me a nice
+    over view but I still couldn't decide on which one to use. But after reading <a href="http://www.zingdesign.com/less-vs-sass-its-time-to-switch-to-sass/">
+    Less vs Sass? It’s time to switch to Sass </a> I have decide to go with Sass, using SCSS as it is more familar as it looks a lot like current CSS.
+
+    <h3> Build Tool </h3>
+    <p> I need a build tool, something too take my nice development enviroment and bundle it up. There is 3 main tools I considered
+    <a href="http://gruntjs.com/"> grunt </a>, <a href="http://gulpjs.com/"> Gulp </a> and <a href="http://www.gnu.org/software/make/"> Make </a>.</p>
+
+    <p> I have used both Grunt and Gulp in webapp projects. I have used Make in all sorts of different projects but not in a webapp project.
+    If I had to choose between Grunt and Gulp I would go with Gulp, this is because it is uses streams which I really like to use, and have used
+    in NodeJS projects. <a href="https://medium.com/@preslavrachev/gulp-vs-grunt-why-one-why-the-other-f5d3b398edc4"> Gulp vs Grunt. Why one? Why the Other? </a>
+    Choosing between Make and Gulp was a lot harder. I read a lot of articles argueing for each one <a href="https://algorithms.rdio.com/post/make/"> Rdio Engineering Blog:
+    The Ultimate Frontend Build Tool: make</a>, <a href = "http://gon.to/2015/02/26/gulp-is-awesome-but-do-we-really-need-it/"> Gulp is awesome, but do we really need it? </a>
+    , <a href="http://blog.depold.com/farewell-make-hello-gulp/"> Farewell Make hello Gulp </a>,
+    <a href="http://www.reddit.com/r/programming/comments/236xt4/a_case_for_makefiles_in_nodejs/"> Reddit Comments on the matter </a>,
+    <a href="http://shapeshed.com/making-the-case-for-make/"> Making the case for make </a> and
+    <a href="http://www.100percentjs.com/just-like-grunt-gulp-browserify-now/"> And just like that Grunt and RequireJS are out, it’s all about Gulp and Browserify now </a></p>
+
+
+    Advantages of Gulp is that you write the build script in javascript, huge amount of documentation on how to get web development tools to work with it
+    as this was what it was made to build, <a href="http://yeoman.io/learning/"> Yeomans scaffolding use it, </a> and I would like to use Yeoman to get off the ground
+    quicker, and Gulp is more cross platform (make doesn't really work on windows)
+
+    Advantages of Make, its proven used in thousands and thousands of projects, it would be good to get better at Make since its used everywhere, potentially simpler.
+
+    <h3> Module Loader/Packers </h3>
+    <p>I will want to use a module loader so I can separate my code into multiple files to keep my code cleaner. </p>
+
+    <p> When looking at module loaders, you have to make a choice to which module format you want, AMD or CommonJS. CommonJS is what nodeJS uses and AMD is what
+       RequireJS, both nodeJS and RequireJS I have used a lot in differnet projects, and I prefer
+       CommonJS because you don't have to wrap your module in a define function, you don't get
+       confused by which varibles equal which modules, and the code looks cleaner (less indents which I like). </p>
+    <p>
+
+<h4>AMD package definition: </h4>
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></td><td><pre style="margin: 0; line-height: 125%">define(
+	[<span style="color: #BA2121">&#39;pkgA/modA&#39;</span>, <span style="color: #BA2121">&#39;pkgA/modB&#39;</span>, <span style="color: #BA2121">&#39;pkgZ/modC&#39;</span>],
+	<span style="color: #008000; font-weight: bold">function</span> (modA, modB, modC) {
+
+		<span style="color: #008000; font-weight: bold">var</span> myModule <span style="color: #666666">=</span> {
+			doStuff<span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">function</span>() { ... }
+		}
+
+		<span style="color: #008000; font-weight: bold">return</span> myModule;
+	}
+);
+</pre></td></tr></table></div>
+
+<h4>CommonJS package definition: </h4>
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
+2
+3
+4
+5
+6
+7</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> modA <span style="color: #666666">=</span> require(<span style="color: #BA2121">&#39;pkgA/modA&#39;</span>);
+<span style="color: #008000; font-weight: bold">var</span> modB <span style="color: #666666">=</span> require(<span style="color: #BA2121">&#39;pkgA/modB&#39;</span>);
+<span style="color: #008000; font-weight: bold">var</span> modC <span style="color: #666666">=</span> require(<span style="color: #BA2121">&#39;pkgZ/modC&#39;</span>);
+
+<span style="color: #008000; font-weight: bold">function</span> doStuff() { ... }
+
+exports.doStuff <span style="color: #666666">=</span> doStuff;
+</pre></td></tr></table></div>
+
+
+    <p> after reading a some comparisons and my past reading <a href="http://webpack.github.io/docs/comparison.html"> webpacks comparsion </a>,
+      <a href="https://gist.github.com/substack/68f8d502be42d5cd4942"> Browserify corrections to webpacks comparison </a> and
+      <a href="http://blog.namangoel.com/browserify-vs-webpack-js-drama"> Browserify VS Webpack - JS Drama. </a> I couldn't decide between
+      Browserify and Webpack. until I found <a href="http://gaearon.github.io/react-hot-loader/"> React Hot Loader </a> which is just
+      awesome and will improve development speed alot. React Hot Loader also only works on Webpack which pretty much makes my mind up on that
+      question. </p>
+
+      <p> later I found <a href="https://github.com/milankinen/livereactload">LiveReactload</a> which is a Browserify version of
+        React Hot Loader. Which means both bundlers were still on the table. I decided togo with Browserify because its easier to configure,
+        and I always have the ablity to switch over to Webpack later if I need to. </p>
+
+
+
     <h3> What I'm going with and why </h3>
     <ul>
-      <li> Html - because I am use to it and the alternatives don't add much value</li>
-      <li> TypeScript - because its javascript (which i'm use too) but smarter, it has types to
-         prevent you from silly mistakes at the start, and with a decent IDE it will do intelligent
-         autocomplete. </li>
       <li> Sass - because it CSS that just better, variables, nesting, extending, etc... </li>
       <li> yeoman - because it helps me get started really quickly with all the frameworks and languages I want. </li>
       <li> Browerify - lets me use the same structor you would in a node.js project (which I love) but for a webapp </li>
