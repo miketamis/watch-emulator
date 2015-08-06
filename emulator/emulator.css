@@ -27,7 +27,7 @@ iframe#watch-app {
 
 #down-button {
   top: 135px;
-  position: absolute;
+  position: relative;
 }
 
 #container {
