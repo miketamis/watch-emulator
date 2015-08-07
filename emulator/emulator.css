@@ -1,8 +1,20 @@
 iframe#watch-app {
   width: 144px;
   height: 168px;
+}
+
+#watch-app-wrapper {
   display: inline-block;
   vertical-align:top;
+  position: relative;
+}
+
+#click-blocker {
+  width: 144px;
+  height: 168px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .button-group {
