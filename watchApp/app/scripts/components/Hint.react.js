@@ -2,7 +2,6 @@
 'use strict';
 
 var React = require('react');
-var Hint = require('./Hint.react.js');
 
 var SitupScreen = React.createClass({
   /**
@@ -10,7 +9,7 @@ var SitupScreen = React.createClass({
    */
   render: function() {
       return (
-        <Hint position="middle" value="next"/>
+        <div className={"hint " + this.props.position}> {this.props.value} </div>
     );
   }
 });
