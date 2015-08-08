@@ -1,9 +1,7 @@
 /* @flow */
 
 dispatchEvent = function(event_name) {
-  var event = document.createEvent('Event');
-  event.initEvent(event_name, true, true);
-  document.getElementById("watch-app").contentWindow.dispatchEvent(event);
+  document.getElementById("watch-app").contentWindow.postMessage(event_name, "*");
 }
 
 var button_ids = ["back-button", "up-button", "down-button", "middle-button"];
