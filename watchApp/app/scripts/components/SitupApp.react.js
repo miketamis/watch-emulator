@@ -1,39 +1,44 @@
 /* @flow */
 var React = require('react');
-var ListMenu = require('./ListMenu.react');
-var AppDispatcher = require('../dispatcher/AppDispatcher');
+var MainMenu = require('./MainMenu.react');
+var PageStore = require('../stores/PageStore');
+
+function getPageState() {
+  return {
+    page: PageStore.getPage()
+  }
+}
 
 var SitupApp = React.createClass({
+  getInitialState: function() {
+    return getPageState();
+  },
   componentDidMount: function() {
-    var self = this;
-    this.dispatchToken = AppDispatcher.register(function(action) {
-      if(action.actionType == "optionSelected") {
-        switch(action.Option) {
-          case "Start":
-            alert("Start");
-            break;
-          case "Settings":
-            alert("Settings");
-            break;
-        }
-      }
-      return true;
-    });
- },
- componentWillUnmount: function() {
-   AppDispatcher.unregister(this.dispatchToken);
- },
+    PageStore.addChangeListener(this._onChange);
+  },
+  componentWillUnmount: function() {
+   PageStore.addChangeListener(this._onChange);
+  },
   /**
    * @return {object}
    */
   render: function() {
-    var menu_list = [{text: "Start"}, {text: "Settings"}];
+    var Child = this._getComponent();
     return (
       <div>
-        <ListMenu items={menu_list} />
+        <Child />
       </div>
     );
   },
+  _onChange: function() {
+    this.setState(getPageState());
+  },
+  _getComponent() {
+    switch(this.state.page) {
+      case "MainMenu": return MainMenu;
+    }
+    throw new Error("No page called: " + this.state.page);
+  }
 
 });
 
