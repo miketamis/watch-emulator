@@ -5,10 +5,18 @@ var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';
 
-var _page = 'MainMenu';
+var _pageHistory = ['MainMenu'];
 
 function _setPage(page) {
-  _page = page;
+  _pageHistory.push(page);
+}
+
+function _goBack() {
+  if(_pageHistory.length <= 1) {
+    alert('Quit');
+  } else {
+    _pageHistory.pop();
+  }
 }
 
 
@@ -32,7 +40,7 @@ var PageStore = assign({}, EventEmitter.prototype, {
   },
 
   getPage: function() {
-    return _page;
+    return _pageHistory[_pageHistory.length - 1];
   }
 });
 
@@ -42,6 +50,10 @@ AppDispatcher.register(function(action) {
   switch(action.actionType) {
     case 'optionSelected':
       _setPage(action.Option);
+      PageStore.emitChange();
+      break;
+    case 'goBack':
+      _goBack();
       PageStore.emitChange();
       break;
     default:
