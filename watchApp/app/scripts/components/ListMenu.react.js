@@ -1,4 +1,5 @@
 /* @flow */
+'use strict';
 var React = require('react');
 var classNames = require('classnames');
 var standardActions = require('../actions/standardActions');
@@ -8,7 +9,7 @@ var ListMenu = React.createClass({
     var self = this;
     this._getSelected(this.props.items, function(err) {
       if(err) {
-        if(err.message == "No items selected") {
+        if(err.message === 'No items selected') {
           self.props.items[0].selected = true;
           return;
         }
@@ -20,22 +21,22 @@ var ListMenu = React.createClass({
   },
   watchListener: function(message) {
     switch(message.data) {
-      case "up-button:click":
+      case 'up-button:click':
         this._moveUp();
         break;
-      case "down-button:click":
+      case 'down-button:click':
         this._moveDown();
         break;
-      case "middle-button:click":
+      case 'middle-button:click':
         this._select();
         break;
       }
   },
   componentDidMount: function() {
-    window.addEventListener("message", this.watchListener);
+    window.addEventListener('message', this.watchListener);
  },
  componentWillUnmount: function() {
-    window.removeEventListener("message", this.watchListener);
+    window.removeEventListener('message', this.watchListener);
  },
  _select: function() {
    this._getSelected(function(err, item) {
@@ -46,17 +47,17 @@ var ListMenu = React.createClass({
    });
  },
  _getSelected: function(items, cb) {
-   if (typeof items === "function") {
+   if (typeof items === 'function') {
     cb = items;
     items = this.state.items;
    }
-   if(items.length == 0) {
+   if(items.length === 0) {
       cb(new Error('No items'));
    }
    var index = -1;
    for (var i = 0, len = items.length; i < len; i++) {
      if(items[i].selected) {
-       if(index == -1) {
+       if(index === -1) {
          index = i;
        } else {
          cb(new Error('Multiple items selected'));
@@ -64,7 +65,7 @@ var ListMenu = React.createClass({
        }
      }
    }
-   if(index == -1) {
+   if(index === -1) {
      cb(new Error('No items selected'));
    }
    cb(null, items[index], index);
@@ -76,14 +77,14 @@ var ListMenu = React.createClass({
      if(err) {
        throw err;
      }
-     if((up && index == 0) || (!up && index == items.length - 1)) {
+     if((up && index === 0) || (!up && index === items.length - 1)) {
        return;
      }
      item.selected = false;
      items[index + (up ? -1 : 1)].selected = true;
-   })
+   });
 
-  this.setState({items: items})
+  this.setState({items: items});
  },
  _moveUp: function() {
    this._move(true);

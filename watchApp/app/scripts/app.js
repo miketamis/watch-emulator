@@ -1,6 +1,7 @@
+'use strict';
 
-var React = window.React = require('react'),
-    Timer = require('./components/SitupApp.react'),
-    mountNode = document.getElementById("app");
-    
-React.render(<Timer />, mountNode);
+var React = require('react');
+var SitupApp = require('./components/SitupApp.react');
+var mountNode = document.getElementById('app');
+
+React.render(<SitupApp />, mountNode);

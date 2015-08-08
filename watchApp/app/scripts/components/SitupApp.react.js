@@ -1,4 +1,5 @@
 /* @flow */
+'use strict';
 var React = require('react');
 var MainMenu = require('./MainMenu.react');
 var PageStore = require('../stores/PageStore');
@@ -6,7 +7,7 @@ var PageStore = require('../stores/PageStore');
 function getPageState() {
   return {
     page: PageStore.getPage()
-  }
+  };
 }
 
 var SitupApp = React.createClass({
