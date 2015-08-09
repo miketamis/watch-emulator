@@ -4,6 +4,7 @@ var React = require('react');
 var MainMenu = require('./MainMenu.react');
 var PageStore = require('../stores/PageStore');
 var WorkoutScreen = require('./WorkoutScreen.react');
+var DoneScreen = require('./DoneScreen.react');
 require('../actions/watchActions.js');
 
 function getPageState() {
@@ -40,6 +41,7 @@ var SitupApp = React.createClass({
     switch(this.state.page) {
       case "MainMenu": return MainMenu;
       case "Start": return WorkoutScreen;
+      case "Done": return DoneScreen;
     }
     throw new Error("No page called: " + this.state.page);
   }

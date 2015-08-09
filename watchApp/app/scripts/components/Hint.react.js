@@ -9,7 +9,7 @@ var SitupScreen = React.createClass({
    */
   render: function() {
       return (
-        <div className={"hint " + this.props.position}> {this.props.value} </div>
+        <div className={this.props.className + " hint " + this.props.position}> {this.props.value} </div>
     );
   }
 });

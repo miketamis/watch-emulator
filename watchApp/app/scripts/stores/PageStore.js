@@ -19,6 +19,10 @@ function _goBack() {
   }
 }
 
+function _goHome() {
+  _pageHistory = ['MainMenu'];
+}
+
 
 var PageStore = assign({}, EventEmitter.prototype, {
   emitChange: function() {
@@ -53,7 +57,12 @@ AppDispatcher.register(function(action) {
       PageStore.emitChange();
       break;
     case 'cancelWorkout':
+    case 'goBack':
       _goBack();
+      PageStore.emitChange();
+      break;
+    case 'finishWorkout':
+      _goHome();
       PageStore.emitChange();
       break;
     default:

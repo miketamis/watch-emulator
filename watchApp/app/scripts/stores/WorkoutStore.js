@@ -8,9 +8,14 @@ var workoutGenerator = require('../utils/WorkoutGenerator');
 var CHANGE_EVENT = 'change';
 
 var _workout = [];
+var _level = 3;
 
 function _getLevel() {
-  return 3;
+  return _level;
+}
+
+function _incrementLevel(i) {
+  _level = _level + i;
 }
 
 function _getAge() {
@@ -88,6 +93,11 @@ AppDispatcher.register(function(action) {
       break;
     case 'nextRep':
       _nextRep();
+      WorkoutStore.emitChange();
+      break;
+    case 'finishWorkout':
+      _incrementLevel(action.levelChange);
+      _resetWorkout();
       WorkoutStore.emitChange();
       break;
     case 'cancelWorkout':

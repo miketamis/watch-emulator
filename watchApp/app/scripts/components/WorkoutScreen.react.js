@@ -19,7 +19,7 @@ var WorkoutScreen = React.createClass({
     switch(message.data) {
       case 'middle-button:click':
         if(WorkoutStore.onLast()) {
-
+          standardActions.optionSelected('Done');
         } else {
           standardActions.nextRep();
         }

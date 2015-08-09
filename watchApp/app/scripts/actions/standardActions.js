@@ -26,6 +26,22 @@ var standardActions = {
     AppDispatcher.dispatch({
       actionType: 'cancelWorkout'
     });
+  },
+
+  goBack: function() {
+    AppDispatcher.dispatch({
+      actionType: 'goBack'
+    });
+  },
+
+  finishWorkout: function(change) {
+    if(!change) {
+      change = 0;
+    }
+    AppDispatcher.dispatch({
+      actionType: 'finishWorkout',
+      levelChange: change
+    });
   }
 };
 
