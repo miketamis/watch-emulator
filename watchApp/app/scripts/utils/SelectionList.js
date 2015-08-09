@@ -28,7 +28,7 @@ var SelectionList = {
     var index = this.getSelectedIndex(items);
 
     if((up && index === 0) || (!up && index === items.length - 1)) {
-      return;
+      return items;
     }
 
     items[index].selected = false;
