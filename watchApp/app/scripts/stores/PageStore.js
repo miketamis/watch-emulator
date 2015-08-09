@@ -77,6 +77,7 @@ PageStore.dispatchToken = AppDispatcher.register(function(action) {
     case 'resetData':
         AppDispatcher.waitFor([WorkoutStore.dispatchToken]);
         _setPage('Welcome');
+        PageStore.emitChange();
         break;
     case 'calculateLevel':
         _pushPage('MainMenu');
