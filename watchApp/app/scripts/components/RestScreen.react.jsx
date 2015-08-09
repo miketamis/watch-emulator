@@ -10,7 +10,7 @@ var standardActions = require('../actions/standardActions');
 
 var RestScreen = React.createClass({
     getInitialState: function() {
-        return {rest: WorkoutStore.getCurrentRest()};
+        return {rest: WorkoutStore.getCurrentRest(), total: WorkoutStore.getCurrentRest()};
     },
     tick: function() {
         var newRest = this.state.rest - 1;
@@ -27,14 +27,29 @@ var RestScreen = React.createClass({
         clearInterval(this.interval);
     },
 
+    generateStyle: function(i) {
+        var bC = 'white';
+        var LoadingBar = 'tomato';
+        if(i > 180) {
+            return { backgroundImage: 'linear-gradient(' + (i - 270) +
+                 'deg, ' + LoadingBar + ' 50%, transparent 50%, transparent),' +
+                 ' linear-gradient(270deg, '+ LoadingBar + ' 50%, ' + bC + ' 50%, ' + bC + ')'};
+        }
+        return {backgroundImage:
+            'linear-gradient(90deg, '+ bC + ' 50%, transparent 50%, transparent),' +
+            ' linear-gradient(' + (i + 90) + 'deg, ' + LoadingBar + ' 50%, ' + bC +
+            ' 50%, ' + bC + ')'};
+    },
+
     /**
     * @return {object}
     */
     render: function() {
+        var percentage = this.state.rest * 360 / this.state.total;
         return (
             <div>
             <Hint position="middle" value="&#9193;"/>
-            <div className="doSitups">
+            <div style={this.generateStyle(percentage)} className='doSitups'>
             <span> Rest For </span>
             <CircleNumber value={this.state.rest } />
             <span> Seconds </span>
