@@ -9,7 +9,7 @@ var standardActions = require('./actions/standardActions');
 var WorkoutStore = require('./stores/WorkoutStore');
 
 if(!WorkoutStore.hasLevelData()) {
-  standardActions.setPage('Welcome');
+    standardActions.setPage('Welcome');
 }
 
 React.render(<SitupApp />, mountNode);

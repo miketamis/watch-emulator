@@ -10,38 +10,38 @@ var standardActions = require('../actions/standardActions');
 
 var RestScreen = React.createClass({
     getInitialState: function() {
-      return {rest: WorkoutStore.getCurrentRest()};
+        return {rest: WorkoutStore.getCurrentRest()};
     },
     tick: function() {
-      var newRest = this.state.rest - 1;
-      if(newRest <= 0) {
-        standardActions.nextRep();
-      } else {
-        this.setState({rest: this.state.rest - 1});
-      }
+        var newRest = this.state.rest - 1;
+        if(newRest <= 0) {
+            standardActions.nextRep();
+        } else {
+            this.setState({rest: this.state.rest - 1});
+        }
     },
     componentDidMount: function() {
-      this.interval = setInterval(this.tick, 1000);
+        this.interval = setInterval(this.tick, 1000);
     },
     componentWillUnmount: function() {
-      clearInterval(this.interval);
+        clearInterval(this.interval);
     },
 
-  /**
-   * @return {object}
-   */
-  render: function() {
-      return (
-        <div>
-          <Hint position="middle" value="&#9193;"/>
-          <div className="doSitups">
+    /**
+    * @return {object}
+    */
+    render: function() {
+        return (
+            <div>
+            <Hint position="middle" value="&#9193;"/>
+            <div className="doSitups">
             <span> Rest For </span>
             <CircleNumber value={this.state.rest } />
             <span> Seconds </span>
-          </div>
-        </div>
-    );
-  }
+            </div>
+            </div>
+        );
+    }
 });
 
 module.exports = RestScreen;

@@ -8,24 +8,24 @@ var WorkoutStore = require('../stores/WorkoutStore');
 
 var SitupScreen = React.createClass({
     getInitialState: function() {
-      return {situps: WorkoutStore.getCurrentSitup()};
+        return {situps: WorkoutStore.getCurrentSitup()};
     },
 
-  /**
-   * @return {object}
-   */
-  render: function() {
-      return (
-        <div>
-          <Hint position="middle" value="&#10003;"/>
-          <div className="doSitups">
+    /**
+    * @return {object}
+    */
+    render: function() {
+        return (
+            <div>
+            <Hint position="middle" value="&#10003;"/>
+            <div className="doSitups">
             <span> Do </span>
             <CircleNumber value={this.state.situps } />
             <span> Situps </span>
-          </div>
-        </div>
-    );
-  }
+            </div>
+            </div>
+        );
+    }
 });
 
 module.exports = SitupScreen;

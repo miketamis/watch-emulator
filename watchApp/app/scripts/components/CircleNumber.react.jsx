@@ -7,13 +7,13 @@ var MainMenu = React.createClass({
   /**
    * @return {object}
    */
-  render: function() {
-    return (
-      <div className="circle">
-        {this.props.value }
-      </div>
-    );
-  }
+    render: function() {
+        return (
+          <div className="circle">
+            { this.props.value }
+          </div>
+        );
+    }
 });
 
 module.exports = MainMenu;
