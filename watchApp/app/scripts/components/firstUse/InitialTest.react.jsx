@@ -16,13 +16,17 @@ var InitialTest = React.createClass({
     watchListener: function(message) {
         switch(message.data) {
         case 'up-button:click':
-            this.setState({number: _numberOfSitups++});
+            if(_numberOfSitups < 999) {
+                this.setState({number: ++_numberOfSitups});
+            }
             break;
         case 'middle-button:click':
             setupActions.calculateLevel(this.state.number);
             break;
         case 'down-button:click':
-            this.setState({number: _numberOfSitups--});
+            if(_numberOfSitups > 1) {
+                this.setState({number: --_numberOfSitups});
+            }
             break;
         case 'back-button:click':
             setupActions.resetAge();
