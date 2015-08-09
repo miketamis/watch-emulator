@@ -1,0 +1,20 @@
+.hint {
+  position: absolute;
+  right: -5px;
+  padding-right: 5px;
+  padding-left: 2px;
+  border: 2px solid #8AC007;
+  border-radius: 6px;
+}
+
+.hint.middle {
+    top: 75px;
+}
+
+.hint.top {
+    top: 17px;
+}
+
+.hint.bottom {
+    top: 133px;
+}
