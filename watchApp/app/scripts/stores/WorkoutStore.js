@@ -10,16 +10,25 @@ var CHANGE_EVENT = 'change';
 
 var _workout = [];
 
+function _getAge() {
+  var age = localStorage.getItem('age');
+  if(!age) {
+    throw new Error('No Age');
+  }
+  return age;
+}
+
+
+function _setLevel(level) {
+  localStorage.setItem('level', level);
+}
+
 function _getLevel() {
   var level = localStorage.getItem('level');
   if(!level) {
     throw new Error('No Level');
   }
   return level;
-}
-
-function _setLevel(level) {
-  localStorage.setItem('level', level);
 }
 
 function _incrementLevel(i) {
@@ -29,13 +38,6 @@ function _incrementLevel(i) {
   }
 }
 
-function _getAge() {
-  var age = localStorage.getItem('age');
-  if(!age) {
-    throw new Error('No Age');
-  }
-  return age;
-}
 
 function _setAge(age) {
   localStorage.setItem('age', age);
@@ -45,7 +47,15 @@ function _resetWorkout() {
   _workout = workoutGenerator(_getLevel(), _getAge());
   _workout[0].selected = true;
 }
-_resetWorkout();
+
+function _getWorkout() {
+  if(!_workout) {
+    _resetWorkout();
+  }
+  return _workout;
+}
+
+
 
 function _getCurrent(type) {
   var selected = SelectionList.getSelected(_workout);
@@ -62,6 +72,7 @@ function _goBack() {
 function _nextRep() {
   _workout = SelectionList.moveDown(_workout);
 }
+
 
 
 var WorkoutStore = assign({}, EventEmitter.prototype, {
@@ -92,10 +103,10 @@ var WorkoutStore = assign({}, EventEmitter.prototype, {
     return _workout;
   },
   onFirst: function() {
-    return _workout[0].selected;
+    return _getWorkout()[0].selected;
   },
   onLast: function() {
-    return _workout[_workout.length - 1].selected;
+    return _getWorkout()[_getWorkout().length - 1].selected;
   },
   getCurrentType: function() {
     return SelectionList.getSelected(_workout).type;

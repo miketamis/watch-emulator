@@ -7,8 +7,12 @@ var CHANGE_EVENT = 'change';
 
 var _pageHistory = ['MainMenu'];
 
-function _setPage(page) {
+function _pushPage(page) {
   _pageHistory.push(page);
+}
+
+function _setPage(page) {
+  _pageHistory = [page];
 }
 
 function _goBack() {
@@ -20,7 +24,7 @@ function _goBack() {
 }
 
 function _goHome() {
-  _pageHistory = ['MainMenu'];
+  _setPage('MainMenu');
 }
 
 
@@ -53,7 +57,11 @@ AppDispatcher.register(function(action) {
 
   switch(action.actionType) {
     case 'optionSelected':
-      _setPage(action.Option);
+      _pushPage(action.Option);
+      PageStore.emitChange();
+      break;
+    case 'setPage':
+      _setPage(action.page);
       PageStore.emitChange();
       break;
     case 'cancelWorkout':

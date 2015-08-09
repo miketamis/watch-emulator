@@ -10,6 +10,13 @@ var standardActions = {
     });
   },
 
+  setPage: function(p) {
+    AppDispatcher.dispatch({
+      actionType: 'setPage',
+      page: p
+    });
+  },
+
   nextRep: function() {
     AppDispatcher.dispatch({
       actionType: 'nextRep'
