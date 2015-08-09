@@ -3,6 +3,7 @@
 var React = require('react');
 var classNames = require('classnames');
 var standardActions = require('../actions/standardActions');
+var SelectionList = require('../utils/SelectionList');
 
 var ListMenu = React.createClass({
   getInitialState: function() {
@@ -51,46 +52,13 @@ var ListMenu = React.createClass({
     cb = items;
     items = this.state.items;
    }
-   if(items.length === 0) {
-      cb(new Error('No items'));
-   }
-   var index = -1;
-   for (var i = 0, len = items.length; i < len; i++) {
-     if(items[i].selected) {
-       if(index === -1) {
-         index = i;
-       } else {
-         cb(new Error('Multiple items selected'));
-         return;
-       }
-     }
-   }
-   if(index === -1) {
-     cb(new Error('No items selected'));
-   }
-   cb(null, items[index], index);
- },
- _move: function(up) {
-   var items = this.state.items;
-
-   this._getSelected(items, function(err, item, index) {
-     if(err) {
-       throw err;
-     }
-     if((up && index === 0) || (!up && index === items.length - 1)) {
-       return;
-     }
-     item.selected = false;
-     items[index + (up ? -1 : 1)].selected = true;
-   });
-
-  this.setState({items: items});
+   SelectionList.getSelected(items, cb);
  },
  _moveUp: function() {
-   this._move(true);
+    this.setState({items: SelectionList.moveUp(this.state.items)});
  },
  _moveDown: function() {
-   this._move(false);
+   this.setState({items: SelectionList.moveDown(this.state.items)});
  },
   /**
    * @return {object}
