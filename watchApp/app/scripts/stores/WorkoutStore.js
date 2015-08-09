@@ -3,17 +3,23 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 var SelectionList = require('../utils/SelectionList');
+var workoutGenerator = require('../utils/WorkoutGenerator');
 
 var CHANGE_EVENT = 'change';
 
 var _workout = [];
 
+function _getLevel() {
+  return 3;
+}
+
+function _getAge() {
+  return 1;
+}
+
 function _resetWorkout() {
-  _workout = [{type: 'situps', amount: 10, selected: true},
-              {type: 'rest', amount: 30},
-              {type: 'situps', amount: 20},
-              {type: 'rest', amount: 60},
-              {type: 'situps', amount: 30}];
+  _workout = workoutGenerator(_getLevel(), _getAge());
+  _workout[0].selected = true;
 }
 _resetWorkout();
 
