@@ -4,8 +4,14 @@
 var React = require('react');
 var Hint = require('./Hint.react.js');
 var CircleNumber = require('./CircleNumber.react.js');
+var WorkoutStore = require('../stores/WorkoutStore');
+
 
 var SitupScreen = React.createClass({
+    getInitialState: function() {
+      return {situps: WorkoutStore.getCurrentSitup()};
+    },
+
   /**
    * @return {object}
    */
@@ -15,7 +21,7 @@ var SitupScreen = React.createClass({
           <Hint position="middle" value="&#10003;"/>
           <div className="doSitups">
             <span> Do </span>
-            <CircleNumber />
+            <CircleNumber value={this.state.situps } />
             <span> Situps </span>
           </div>
         </div>

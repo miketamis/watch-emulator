@@ -52,7 +52,11 @@ var ListMenu = React.createClass({
     cb = items;
     items = this.state.items;
    }
-   SelectionList.getSelected(items, cb);
+   try {
+     cb(null, SelectionList.getSelected(items));
+   } catch(err) {
+     cb(err);
+   }
  },
  _moveUp: function() {
     this.setState({items: SelectionList.moveUp(this.state.items)});

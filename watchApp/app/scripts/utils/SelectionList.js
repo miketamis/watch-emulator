@@ -2,9 +2,12 @@
 'use strict';
 
 var SelectionList = {
-  getSelected: function(items, cb) {
+  getSelected: function(items) {
+    return items[this.getSelectedIndex(items)];
+  },
+  getSelectedIndex: function(items) {
     if(items.length === 0) {
-       cb(new Error('No items'));
+       throw new Error('No items');
     }
     var index = -1;
     for (var i = 0, len = items.length; i < len; i++) {
@@ -12,27 +15,25 @@ var SelectionList = {
         if(index === -1) {
           index = i;
         } else {
-          cb(new Error('Multiple items selected'));
-          return;
+          throw new Error('Multiple items selected');
         }
       }
     }
     if(index === -1) {
-      cb(new Error('No items selected'));
+      throw new Error('No items selected');
     }
-    cb(null, items[index], index);
+    return index;
   },
   move: function(items, up) {
-    this.getSelected(items, function(err, item, index) {
-      if(err) {
-        throw err;
-      }
-      if((up && index === 0) || (!up && index === items.length - 1)) {
-        return;
-      }
-      item.selected = false;
-      items[index + (up ? -1 : 1)].selected = true;
-    });
+    var index = this.getSelectedIndex(items);
+
+    if((up && index === 0) || (!up && index === items.length - 1)) {
+      return;
+    }
+
+    items[index].selected = false;
+    items[index + (up ? -1 : 1)].selected = true;
+
     return items;
   },
   moveUp: function(items) {

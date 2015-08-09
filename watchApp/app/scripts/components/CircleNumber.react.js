@@ -10,7 +10,7 @@ var MainMenu = React.createClass({
   render: function() {
     return (
       <div className="circle">
-        20
+        {this.props.value }
       </div>
     );
   }
