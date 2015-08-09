@@ -66,6 +66,9 @@ var WorkoutStore = assign({}, EventEmitter.prototype, {
   },
   onLast: function() {
     return _workout[_workout.length - 1].selected;
+  },
+  getCurrentType: function() {
+    return SelectionList.getSelected(_workout).type;
   }
 });
 
