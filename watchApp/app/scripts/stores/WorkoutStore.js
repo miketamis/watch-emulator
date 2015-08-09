@@ -16,7 +16,7 @@ function isNumber (o) {
 
 function _getAge() {
     var age = parseInt(localStorage.getItem('age'));
-    if(!age) {
+    if(age !== 0 && !age) {
         throw new Error('No Age');
     }
     if(isNaN(age)) {
