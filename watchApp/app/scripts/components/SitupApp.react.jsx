@@ -9,6 +9,7 @@ var DoneScreen = require('./DoneScreen.react.jsx');
 var Welcome = require('./firstUse/Welcome.react.jsx');
 var AgeScreen = require('./firstUse/AgeScreen.react.jsx');
 var InitialTest = require('./firstUse/InitialTest.react.jsx');
+var SettingScreen = require('./SettingScreen.react.jsx');
 
 function getPageState() {
     return {
@@ -51,6 +52,7 @@ var SitupApp = React.createClass({
         case 'Setup':
             if(!WorkoutStore.hasAgeData()) return AgeScreen;
             return InitialTest;
+        case 'Setting': return SettingScreen;
         }
         throw new Error('No page called: ' + this.state.page);
     }
