@@ -2,13 +2,14 @@
 'use strict';
 var React = require('react');
 var classNames = require('classnames');
-var standardActions = require('../actions/standardActions');
 var SelectionList = require('../utils/SelectionList');
 
 var ListMenu = React.createClass({
     getInitialState: function() {
         var self = this;
-        this._getSelected(this.props.items, function(err) {
+        try {
+            SelectionList.getSelected(this.props.items);
+        } catch(err) {
             if(err) {
                 if(err.message === 'No items selected') {
                     self.props.items[0].selected = true;
@@ -16,8 +17,7 @@ var ListMenu = React.createClass({
                 }
                 throw err;
             }
-        });
-
+        }
         return {items: this.props.items};
     },
     watchListener: function(message) {
@@ -40,23 +40,8 @@ var ListMenu = React.createClass({
         window.removeEventListener('message', this.watchListener);
     },
     _select: function() {
-        this._getSelected(function(err, item) {
-            if(err) {
-                throw err;
-            }
-            standardActions.optionSelected(item.text);
-        });
-    },
-    _getSelected: function(items, cb) {
-        if (typeof items === 'function') {
-            cb = items;
-            items = this.state.items;
-        }
-        try {
-            cb(null, SelectionList.getSelected(items));
-        } catch(err) {
-            cb(err);
-        }
+        var self = this;
+        self.props.onSelect(SelectionList.getSelected(this.state.items));
     },
     _moveUp: function() {
         this.setState({items: SelectionList.moveUp(this.state.items)});

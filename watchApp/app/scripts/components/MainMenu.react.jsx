@@ -19,6 +19,9 @@ var MainMenu = React.createClass({
     componentWillUnmount: function() {
         window.removeEventListener('message', this.watchListener);
     },
+    onSelect: function(option) {
+        standardActions.optionSelected(option.text);
+    },
     /**
     * @return {object}
     */
@@ -26,7 +29,7 @@ var MainMenu = React.createClass({
         var menuList = [{text: 'Start'}, {text: 'Setting'}];
         return (
             <div>
-            <ListMenu items={menuList} />
+            <ListMenu items={menuList} onSelect={this.onSelect } />
             </div>
         );
     }
