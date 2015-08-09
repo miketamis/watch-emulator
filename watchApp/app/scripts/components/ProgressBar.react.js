@@ -31,6 +31,12 @@ var ProgressBar = React.createClass({
   getInitialState: function() {
     return getState();
   },
+  componentDidMount: function() {
+    WorkoutStore.addChangeListener(this._onChange);
+  },
+  componentWillUnmount: function() {
+   WorkoutStore.removeChangeListener(this._onChange);
+  },
   /**
    * @return {object}
    */
@@ -43,6 +49,9 @@ var ProgressBar = React.createClass({
       return getNumberIcon(number++, item.selected);
     };
     return <div className='progress-bar'>{this.state.workout.map(createItem)}</div>;
+  },
+  _onChange: function() {
+    this.setState(getState());
   }
 });
 

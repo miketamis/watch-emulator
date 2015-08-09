@@ -8,6 +8,24 @@ var standardActions = {
       actionType: 'optionSelected',
       Option: option
     });
+  },
+
+  nextRep: function() {
+    AppDispatcher.dispatch({
+      actionType: 'nextRep'
+    });
+  },
+
+  previousRep: function() {
+    AppDispatcher.dispatch({
+      actionType: 'previousRep'
+    });
+  },
+
+  cancelWorkout: function() {
+    AppDispatcher.dispatch({
+      actionType: 'cancelWorkout'
+    });
   }
 };
 

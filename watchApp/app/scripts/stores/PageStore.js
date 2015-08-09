@@ -52,7 +52,7 @@ AppDispatcher.register(function(action) {
       _setPage(action.Option);
       PageStore.emitChange();
       break;
-    case 'goBack':
+    case 'cancelWorkout':
       _goBack();
       PageStore.emitChange();
       break;

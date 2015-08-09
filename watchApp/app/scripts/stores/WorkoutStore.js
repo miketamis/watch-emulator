@@ -6,11 +6,16 @@ var SelectionList = require('../utils/SelectionList');
 
 var CHANGE_EVENT = 'change';
 
-var _workout = [{type: 'situps', amount: 10, selected: true},
-            {type: 'rest', amount: 30},
-            {type: 'situps', amount: 20},
-            {type: 'rest', amount: 60},
-            {type: 'situps', amount: 30}];
+var _workout = [];
+
+function _resetWorkout() {
+  _workout = [{type: 'situps', amount: 10, selected: true},
+              {type: 'rest', amount: 30},
+              {type: 'situps', amount: 20},
+              {type: 'rest', amount: 60},
+              {type: 'situps', amount: 30}];
+}
+_resetWorkout();
 
 function _getCurrent(type) {
   var selected = SelectionList.getSelected(_workout);
@@ -21,10 +26,15 @@ function _getCurrent(type) {
 }
 
 function _goBack() {
-  SelectionList.moveUp(_workout);
+  _workout = SelectionList.moveUp(_workout);
 }
 
-var PageStore = assign({}, EventEmitter.prototype, {
+function _nextRep() {
+  _workout = SelectionList.moveDown(_workout);
+}
+
+
+var WorkoutStore = assign({}, EventEmitter.prototype, {
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
@@ -50,6 +60,12 @@ var PageStore = assign({}, EventEmitter.prototype, {
   },
   getWorkout: function() {
     return _workout;
+  },
+  onFirst: function() {
+    return _workout[0].selected;
+  },
+  onLast: function() {
+    return _workout[_workout.length - 1].selected;
   }
 });
 
@@ -57,13 +73,21 @@ var PageStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
 
   switch(action.actionType) {
-    case 'goBack':
+    case 'previousRep':
       _goBack();
-      PageStore.emitChange();
+      WorkoutStore.emitChange();
+      break;
+    case 'nextRep':
+      _nextRep();
+      WorkoutStore.emitChange();
+      break;
+    case 'cancelWorkout':
+      _resetWorkout();
+      WorkoutStore.emitChange();
       break;
     default:
       // no op
   }
 });
 
-module.exports = PageStore;
+module.exports = WorkoutStore;

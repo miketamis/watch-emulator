@@ -4,7 +4,7 @@
  'use strict';
 
  var AppDispatcher = require('../dispatcher/AppDispatcher');
-
+/*
 window.addEventListener('message', function(message) {
   if(message.data === 'back-button:click') {
     AppDispatcher.dispatch({
@@ -12,3 +12,5 @@ window.addEventListener('message', function(message) {
     });
   }
 });
+
+*/

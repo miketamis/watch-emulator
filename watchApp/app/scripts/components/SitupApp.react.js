@@ -3,7 +3,7 @@
 var React = require('react');
 var MainMenu = require('./MainMenu.react');
 var PageStore = require('../stores/PageStore');
-var SitupsScreen = require('./SitupsScreen.react');
+var WorkoutScreen = require('./WorkoutScreen.react');
 require('../actions/watchActions.js');
 
 function getPageState() {
@@ -39,7 +39,7 @@ var SitupApp = React.createClass({
   _getComponent() {
     switch(this.state.page) {
       case "MainMenu": return MainMenu;
-      case "Start": return SitupsScreen;
+      case "Start": return WorkoutScreen;
     }
     throw new Error("No page called: " + this.state.page);
   }

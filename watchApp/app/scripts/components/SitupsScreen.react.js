@@ -5,7 +5,6 @@ var React = require('react');
 var Hint = require('./Hint.react.js');
 var CircleNumber = require('./CircleNumber.react.js');
 var WorkoutStore = require('../stores/WorkoutStore');
-var ProgressBar = require('./ProgressBar.react.js');
 
 var SitupScreen = React.createClass({
     getInitialState: function() {
@@ -18,7 +17,6 @@ var SitupScreen = React.createClass({
   render: function() {
       return (
         <div>
-          <ProgressBar />
           <Hint position="middle" value="&#10003;"/>
           <div className="doSitups">
             <span> Do </span>
