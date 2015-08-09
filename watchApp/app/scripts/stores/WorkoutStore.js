@@ -37,8 +37,7 @@ function _setLevel(level) {
 }
 
 function _calculateLevel(amount) {
-    /* This is sooooo wrong use WorkoutGenerator */
-    _setLevel(amount);
+    _setLevel(workoutGenerator.calculateLevel(amount, _getAge()));
 }
 
 
@@ -72,7 +71,7 @@ function _setAge(age) {
 }
 
 function _resetWorkout() {
-    _workout = workoutGenerator(_getLevel(), _getAge());
+    _workout = workoutGenerator.generateWorkout(_getLevel(), _getAge());
     _workout[0].selected = true;
 }
 
