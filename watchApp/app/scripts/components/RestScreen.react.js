@@ -5,10 +5,26 @@ var React = require('react');
 var Hint = require('./Hint.react.js');
 var CircleNumber = require('./CircleNumber.react.js');
 var WorkoutStore = require('../stores/WorkoutStore');
+var standardActions = require('../actions/standardActions');
+
 
 var RestScreen = React.createClass({
     getInitialState: function() {
       return {rest: WorkoutStore.getCurrentRest()};
+    },
+    tick: function() {
+      var newRest = this.state.rest - 1;
+      if(newRest <= 0) {
+        standardActions.nextRep();
+      } else {
+        this.setState({rest: this.state.rest - 1});
+      }
+    },
+    componentDidMount: function() {
+      this.interval = setInterval(this.tick, 1000);
+    },
+    componentWillUnmount: function() {
+      clearInterval(this.interval);
     },
 
   /**
