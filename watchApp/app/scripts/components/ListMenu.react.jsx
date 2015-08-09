@@ -10,11 +10,9 @@ var ListMenu = React.createClass({
         try {
             SelectionList.getSelected(this.props.items);
         } catch(err) {
-            if(err) {
-                if(err.message === 'No items selected') {
-                    self.props.items[0].selected = true;
-                    return;
-                }
+            if(err.message === 'No items selected') {
+                self.props.items[0].selected = true;
+            } else {
                 throw err;
             }
         }
