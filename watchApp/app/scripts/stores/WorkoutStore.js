@@ -10,10 +10,17 @@ var CHANGE_EVENT = 'change';
 
 var _workout = [];
 
+function isNumber (o) {
+    return o.toFixed;
+}
+
 function _getAge() {
-    var age = localStorage.getItem('age');
+    var age = parseInt(localStorage.getItem('age'));
     if(!age) {
         throw new Error('No Age');
+    }
+    if(isNaN(age)) {
+        throw new Error('Age is not a number');
     }
     return age;
 }
@@ -23,6 +30,9 @@ function _resetData() {
 }
 
 function _setLevel(level) {
+    if(!isNumber(level)) {
+        throw new Error('Trying to set level to a value that isn\'t a number');
+    }
     localStorage.setItem('level', level);
 }
 
@@ -31,10 +41,14 @@ function _calculateLevel(amount) {
     _setLevel(amount);
 }
 
+
 function _getLevel() {
-    var level = localStorage.getItem('level');
+    var level = parseInt(localStorage.getItem('level'));
     if(!level) {
         throw new Error('No Level');
+    }
+    if(isNaN(level)) {
+        throw new Error('Level is not a number');
     }
     return level;
 }
@@ -42,7 +56,7 @@ function _getLevel() {
 function _incrementLevel(i) {
     if(i !== 0) {
         var level = _getLevel() + i;
-        localStorage.setItem('level', level);
+        _setLevel(level);
     }
 }
 
@@ -51,6 +65,9 @@ function _resetLevel() {
 }
 
 function _setAge(age) {
+    if(!isNumber(age)) {
+        throw new Error('Trying to set age to a value that isn\'t a number');
+    }
     localStorage.setItem('age', age);
 }
 

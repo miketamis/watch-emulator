@@ -24,9 +24,10 @@ var setupActions = {
             actionType: 'resetLevel'
         });
     },
-    calculateLevel: function() {
+    calculateLevel: function(level) {
         AppDispatcher.dispatch({
-            actionType: 'calculateLevel'
+            actionType: 'calculateLevel',
+            amount: level
         });
     }
 };
