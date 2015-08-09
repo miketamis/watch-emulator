@@ -1,3 +1,4 @@
+/*jslint browser: true */
 'use strict';
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
@@ -8,18 +9,36 @@ var workoutGenerator = require('../utils/WorkoutGenerator');
 var CHANGE_EVENT = 'change';
 
 var _workout = [];
-var _level = 3;
 
 function _getLevel() {
-  return _level;
+  var level = localStorage.getItem('level');
+  if(!level) {
+    throw new Error('No Level');
+  }
+  return level;
+}
+
+function _setLevel(level) {
+  localStorage.setItem('level', level);
 }
 
 function _incrementLevel(i) {
-  _level = _level + i;
+  if(i !== 0) {
+    var level = _getLevel() + i;
+    localStorage.setItem('level', level);
+  }
 }
 
 function _getAge() {
-  return 1;
+  var age = localStorage.getItem('age');
+  if(!age) {
+    throw new Error('No Age');
+  }
+  return age;
+}
+
+function _setAge(age) {
+  localStorage.setItem('age', age);
 }
 
 function _resetWorkout() {
@@ -80,6 +99,9 @@ var WorkoutStore = assign({}, EventEmitter.prototype, {
   },
   getCurrentType: function() {
     return SelectionList.getSelected(_workout).type;
+  },
+  hasLevelData: function() {
+    return !!localStorage.getItem('level');
   }
 });
 
