@@ -2,14 +2,21 @@
 'use strict';
 
 var React = require('react');
-var Hint = require('../Hint.react.jsx');
+var setupActions = require('../../actions/setupActions');
 var standardActions = require('../../actions/standardActions');
+var TriOptions = require('../TriOptions.react.jsx');
 
-var WelcomeScreen = React.createClass({
+var AgeScreen = React.createClass({
     watchListener: function(message) {
         switch(message.data) {
+        case 'up-button:click':
+            setupActions.setAge(0);
+            break;
         case 'middle-button:click':
-            standardActions.optionSelected('Setup');
+            setupActions.setAge(1);
+            break;
+        case 'down-button:click':
+            setupActions.setAge(2);
             break;
         case 'back-button:click':
             standardActions.goBack();
@@ -27,12 +34,13 @@ var WelcomeScreen = React.createClass({
     */
     render: function() {
         return (
-            <div>
-            <Hint position="middle" value="&#10003;"/>
-            <div id='welcome-screen'> <h2> Welcome to: </h2> <h1> Situp App </h1></div>
-            </div>
+          <div>
+              <TriOptions optionOne="I'm Under 30 Years Old"
+                   optionTwo="I'm between 30 and 39 Years Old"
+                   optionThree="I'm 40 Years Old or Over" />
+          </div>
         );
     }
 });
 
-module.exports = WelcomeScreen;
+module.exports = AgeScreen;

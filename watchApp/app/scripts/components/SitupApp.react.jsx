@@ -3,11 +3,12 @@
 var React = require('react');
 var MainMenu = require('./MainMenu.react.jsx');
 var PageStore = require('../stores/PageStore');
+var WorkoutStore = require('../stores/WorkoutStore');
 var WorkoutScreen = require('./WorkoutScreen.react.jsx');
 var DoneScreen = require('./DoneScreen.react.jsx');
 var Welcome = require('./firstUse/Welcome.react.jsx');
-
-require('../actions/watchActions.js');
+var AgeScreen = require('./firstUse/AgeScreen.react.jsx');
+var InitialTest = require('./firstUse/InitialTest.react.jsx');
 
 function getPageState() {
     return {
@@ -21,9 +22,11 @@ var SitupApp = React.createClass({
     },
     componentDidMount: function() {
         PageStore.addChangeListener(this._onChange);
+        WorkoutStore.addChangeListener(this._onChange);
     },
     componentWillUnmount: function() {
         PageStore.removeChangeListener(this._onChange);
+        WorkoutStore.removeChangeListener(this._onChange);
     },
     /**
     * @return {object}
@@ -45,6 +48,9 @@ var SitupApp = React.createClass({
         case 'Start': return WorkoutScreen;
         case 'Done': return DoneScreen;
         case 'Welcome': return Welcome;
+        case 'Setup':
+            if(!WorkoutStore.hasAgeData()) return AgeScreen;
+            return InitialTest;
         }
         throw new Error('No page called: ' + this.state.page);
     }

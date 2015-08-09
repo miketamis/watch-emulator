@@ -2,6 +2,7 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
+var WorkoutStore = require('./WorkoutStore');
 
 var CHANGE_EVENT = 'change';
 
@@ -53,7 +54,7 @@ var PageStore = assign({}, EventEmitter.prototype, {
 });
 
 
-AppDispatcher.register(function(action) {
+PageStore.dispatchToken = AppDispatcher.register(function(action) {
 
     switch(action.actionType) {
     case 'optionSelected':
@@ -71,6 +72,14 @@ AppDispatcher.register(function(action) {
         break;
     case 'finishWorkout':
         _goHome();
+        PageStore.emitChange();
+        break;
+    case 'resetData':
+        AppDispatcher.waitFor([WorkoutStore.dispatchToken]);
+        _setPage('Welcome');
+        break;
+    case 'calculateLevel':
+        _pushPage('MainMenu');
         PageStore.emitChange();
         break;
     default:

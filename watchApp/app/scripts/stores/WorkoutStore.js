@@ -18,9 +18,17 @@ function _getAge() {
     return age;
 }
 
+function _resetData() {
+    localStorage.clear();
+}
 
 function _setLevel(level) {
     localStorage.setItem('level', level);
+}
+
+function _calculateLevel(amount) {
+    /* This is sooooo wrong use WorkoutGenerator */
+    _setLevel(amount);
 }
 
 function _getLevel() {
@@ -38,6 +46,9 @@ function _incrementLevel(i) {
     }
 }
 
+function _resetLevel() {
+    localStorage.removeItem('level');
+}
 
 function _setAge(age) {
     localStorage.setItem('age', age);
@@ -49,7 +60,7 @@ function _resetWorkout() {
 }
 
 function _getWorkout() {
-    if(!_workout) {
+    if(!_workout || _workout.length === 0) {
         _resetWorkout();
     }
     return _workout;
@@ -58,7 +69,7 @@ function _getWorkout() {
 
 
 function _getCurrent(type) {
-    var selected = SelectionList.getSelected(_workout);
+    var selected = SelectionList.getSelected(_getWorkout());
     if(selected.type === type) {
         return selected;
     }
@@ -66,11 +77,11 @@ function _getCurrent(type) {
 }
 
 function _goBack() {
-    _workout = SelectionList.moveUp(_workout);
+    _workout = SelectionList.moveUp(_getWorkout());
 }
 
 function _nextRep() {
-    _workout = SelectionList.moveDown(_workout);
+    _workout = SelectionList.moveDown(_getWorkout());
 }
 
 
@@ -109,16 +120,18 @@ var WorkoutStore = assign({}, EventEmitter.prototype, {
         return _getWorkout()[_getWorkout().length - 1].selected;
     },
     getCurrentType: function() {
-        return SelectionList.getSelected(_workout).type;
+        return SelectionList.getSelected(_getWorkout()).type;
     },
     hasLevelData: function() {
         return !!localStorage.getItem('level');
+    },
+    hasAgeData: function() {
+        return !!localStorage.getItem('age');
     }
 });
 
 
-AppDispatcher.register(function(action) {
-
+WorkoutStore.dispatchToken = AppDispatcher.register(function(action) {
     switch(action.actionType) {
     case 'previousRep':
         _goBack();
@@ -135,6 +148,25 @@ AppDispatcher.register(function(action) {
         break;
     case 'cancelWorkout':
         _resetWorkout();
+        WorkoutStore.emitChange();
+        break;
+    case 'setAge':
+        _setAge(action.age);
+        WorkoutStore.emitChange();
+        break;
+    case 'resetAge':
+        _resetData();
+        WorkoutStore.emitChange();
+        break;
+    case 'resetData':
+        _resetData();
+        WorkoutStore.emitChange();
+        break;
+    case 'calculateLevel':
+        _calculateLevel(action.amount);
+        break;
+    case 'resetLevel':
+        _resetLevel();
         WorkoutStore.emitChange();
         break;
     default:
