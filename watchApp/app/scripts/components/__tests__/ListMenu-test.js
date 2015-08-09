@@ -1,7 +1,7 @@
 jest.autoMockOff();
 
 describe('ListMenu', function () {
-  var ListMenu = require('../ListMenu.react.js');
+  var ListMenu = require('../ListMenu.react.jsx');
 
 //  var TestUtils = React.addons.TestUtils;
 

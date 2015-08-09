@@ -2,7 +2,7 @@
 'use strict';
 
 var React = require('react');
-var SitupApp = require('./components/SitupApp.react');
+var SitupApp = require('./components/SitupApp.react.jsx');
 var mountNode = document.getElementById('app');
 
 var standardActions = require('./actions/standardActions');

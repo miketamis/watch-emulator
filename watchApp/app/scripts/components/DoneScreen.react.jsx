@@ -3,7 +3,7 @@
 
 var React = require('react');
 var standardActions = require('../actions/standardActions');
-var TriOptions = require('./TriOptions.react.js');
+var TriOptions = require('./TriOptions.react.jsx');
 
 var DoneScreen = React.createClass({
   watchListener: function(message) {

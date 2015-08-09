@@ -2,8 +2,8 @@
 'use strict';
 
 var React = require('react');
-var Hint = require('./Hint.react.js');
-var CircleNumber = require('./CircleNumber.react.js');
+var Hint = require('./Hint.react.jsx');
+var CircleNumber = require('./CircleNumber.react.jsx');
 var WorkoutStore = require('../stores/WorkoutStore');
 
 var SitupScreen = React.createClass({

@@ -1,11 +1,11 @@
 /* @flow */
 'use strict';
 var React = require('react');
-var MainMenu = require('./MainMenu.react');
+var MainMenu = require('./MainMenu.react.jsx');
 var PageStore = require('../stores/PageStore');
-var WorkoutScreen = require('./WorkoutScreen.react');
-var DoneScreen = require('./DoneScreen.react');
-var Welcome = require('./firstUse/Welcome.react');
+var WorkoutScreen = require('./WorkoutScreen.react.jsx');
+var DoneScreen = require('./DoneScreen.react.jsx');
+var Welcome = require('./firstUse/Welcome.react.jsx');
 
 require('../actions/watchActions.js');
 

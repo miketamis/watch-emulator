@@ -13,7 +13,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var source = require('vinyl-source-stream'),
 
-    sourceFile = './app/scripts/app.js',
+    sourceFile = './app/scripts/app.jsx',
 
     destFolder = './dist/scripts',
     destFileName = 'app.js';
@@ -184,7 +184,7 @@ gulp.task('watch', ['html', 'fonts', 'bundle'], function() {
 
     gulp.watch(['app/styles/**/*.scss', 'app/styles/**/*.css'], ['styles', 'scripts', reload]);
 
-    
+
 
     // Watch image files
     gulp.watch('app/images/**/*', reload);

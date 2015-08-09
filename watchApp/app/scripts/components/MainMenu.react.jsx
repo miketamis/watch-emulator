@@ -2,7 +2,7 @@
 'use strict';
 
 var React = require('react');
-var ListMenu = require('./ListMenu.react');
+var ListMenu = require('./ListMenu.react.jsx');
 
 var MainMenu = React.createClass({
   /**

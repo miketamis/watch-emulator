@@ -2,12 +2,12 @@
 'use strict';
 
 var React = require('react');
-var Hint = require('./Hint.react.js');
-var CircleNumber = require('./CircleNumber.react.js');
+var Hint = require('./Hint.react.jsx');
+var CircleNumber = require('./CircleNumber.react.jsx');
 var WorkoutStore = require('../stores/WorkoutStore');
-var ProgressBar = require('./ProgressBar.react.js');
-var SitupsScreen = require('./SitupsScreen.react.js');
-var RestScreen = require('./RestScreen.react');
+var ProgressBar = require('./ProgressBar.react.jsx');
+var SitupsScreen = require('./SitupsScreen.react.jsx');
+var RestScreen = require('./RestScreen.react.jsx');
 var standardActions = require('../actions/standardActions');
 
 function getState() {

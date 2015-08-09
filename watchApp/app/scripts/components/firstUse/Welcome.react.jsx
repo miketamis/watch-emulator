@@ -2,7 +2,7 @@
 'use strict';
 
 var React = require('react');
-var Hint = require('../Hint.react.js');
+var Hint = require('../Hint.react.jsx');
 var standardActions = require('../../actions/standardActions');
 
 var WelcomeScreen = React.createClass({
