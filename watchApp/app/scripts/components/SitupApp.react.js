@@ -20,7 +20,7 @@ var SitupApp = React.createClass({
     PageStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
-   PageStore.addChangeListener(this._onChange);
+   PageStore.removeChangeListener(this._onChange);
   },
   /**
    * @return {object}
