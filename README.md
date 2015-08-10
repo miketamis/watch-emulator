@@ -2,4 +2,4 @@
 Situps app for COSC345
 
 Link to assignment 1:
-http://miketamis.github.io/Situps-app/asignment1.html
+http://miketamis.github.io/watch-emulator/asignment1.html
