@@ -1,6 +1,7 @@
 iframe#watch-app {
   width: 144px;
   height: 168px;
+  overflow:hidden;
 }
 
 #watch-app-wrapper {
